@@ -1,0 +1,113 @@
+import sqlite3
+
+
+def create_table_books():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute(""" CREATE TABLE IF NOT EXISTS books(
+                        id integer PRIMARY KEY,
+                        book_title text,
+                        author text,
+                        publish_date integer,
+                        publisher text,
+                        selling_price integer,
+                        )""")
+
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+
+def select_books():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute = ("SELECT * FROM books")
+
+    cursor.close()
+    connection.close()
+
+
+def insert_books():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute = ("""INSERT INTO "books"(
+            "id", "book_title", "author", "publish_date", "publisher", "selling_price")
+            VALUES (1, "knyga", "authorius", "2019-04-23", "publisherai", "12" 
+                        )""")
+
+    cursor.close()
+    connection.close()
+
+
+def update_books():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute = ("UPDATE books set selling_price = 20 where id = 1")
+
+    cursor.close()
+    connection.close()
+
+
+def delete_books():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute = ("DELETE from books where id = 1")
+
+    cursor.close()
+    connection.close()
+
+
+def create_table_publisher():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute(""" CREATE TABLE IF NOT EXISTS publishers(
+                            id integer PRIMARY KEY,
+                            publisher_name text,
+                            book_title text,
+                            author text,
+                            printed_quantity integer,
+                            printing_price integer,
+                            )""")
+
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+
+def get_publisher():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute = ("SELECT * FROM publishers")
+
+    cursor.close()
+    connection.close()
+
+
+def insert_publisher():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute = ("""INSERT INTO "publishers"(
+                "id", "publisher_name", "book_title", "author", "printed_quantity", "printing_price")
+                VALUES (1, "vardas", "knygos vardas", "autorius", "200", "25" 
+                            )""")
+
+    cursor.close()
+    connection.close()
+
+
+def update_publisher():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute = ("UPDATE publishers set printing_price = 20 where id = 1")
+
+    cursor.close()
+    connection.close()
+
+
+def delete_publisher():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute = ("DELETE from publishers where id = 1")
+
+    cursor.close()
+    connection.close()
