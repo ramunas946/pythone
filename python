@@ -32,7 +32,7 @@ def insert_books():
     cursor = connection.cursor()
     cursor.execute = ("""INSERT INTO "books"(
             "id", "book_title", "author", "publish_date", "publisher", "selling_price")
-            VALUES (1, "knyga", "authorius", "2019-04-23", "publisherai", "12" 
+            VALUES (1, "knyga", "authorius", "2019-04-23", "publisherai", "50" 
                         )""")
 
     cursor.close()
@@ -109,5 +109,19 @@ def delete_publisher():
     cursor = connection.cursor()
     cursor.execute = ("DELETE from publishers where id = 1")
 
+    cursor.close()
+    connection.close()
+
+
+def profit_from_books():
+    connection = sqlite3.connect("library.db")
+    cursor = connection.cursor()
+    cursor.execute = ("""SELECT SUM(printing_price+printed_quantity)-selling_price 
+                    FROM publishers
+                    LEFT JOIN books
+                    ON books.book_title = publisher.book_title
+                        """)
+
+    connection.commit()
     cursor.close()
     connection.close()
